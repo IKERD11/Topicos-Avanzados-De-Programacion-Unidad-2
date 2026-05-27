@@ -24,7 +24,7 @@ En este tutorial, no solo aprenderás a construir un esqueleto, sino también a 
 
 ### 🎥 Animación Final
 
-![Animación Final en Blender](./animacion.gif)
+![Animación Final en Blender](./animacion_small.gif)
 
 ![Referencia de Rigging](1.png)
 
