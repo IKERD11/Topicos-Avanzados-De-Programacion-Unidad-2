@@ -24,7 +24,9 @@ En este tutorial, no solo aprenderás a construir un esqueleto, sino también a 
 
 ### 🎥 Animación Final
 
-https://github.com/IKERD11/Topicos-Avanzados-De-Programacion-Unidad-2/raw/master/animacion.mp4
+<video width="100%" autoplay loop muted playsinline>
+  <source src="https://raw.githubusercontent.com/IKERD11/Topicos-Avanzados-De-Programacion-Unidad-2/master/animacion.mp4" type="video/mp4">
+</video>
 
 ![Referencia de Rigging](1.png)
 
