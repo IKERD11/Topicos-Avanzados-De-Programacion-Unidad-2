@@ -1,4 +1,22 @@
-# Tutorial Completo de Rigging 2D en Blender: De Cero a Héroe
+# 🎬 Tutorial Completo de Rigging 2D en Blender: De Cero a Héroe
+
+![Blender](https://img.shields.io/badge/Blender-2.8+-orange?style=for-the-badge&logo=blender&logoColor=white)
+![Nivel](https://img.shields.io/badge/Nivel-Intermedio-blue?style=for-the-badge)
+![Estado](https://img.shields.io/badge/Estado-Completado-success?style=for-the-badge)
+
+<details>
+<summary>📋 <b>Tabla de Contenidos</b> (Haz clic para expandir)</summary>
+
+- [1. Prerrequisitos](#1-prerrequisitos)
+- [2. Paso a Paso: Creación del Rig](#2-paso-a-paso-creación-del-rig)
+- [3. Parentesco y Weight Painting](#3-parentesco-y-weight-painting)
+- [4. Cinemática Inversa (IK)](#4-cinemática-inversa-ik---magia-para-animar)
+- [5. Videos de Referencia](#5-videos-de-referencia-más-recursos)
+- [6. Subir a GitHub](#6-subir-a-github)
+
+</details>
+
+---
 
 ¡Bienvenido a esta guía completa sobre rigging 2D en Blender! El **rigging** es el proceso de crear un esqueleto (armature) para un personaje, permitiendo que cobre vida a través de la animación. Aunque Blender es famoso por su entorno 3D, sus herramientas para animación 2D son increíblemente potentes y versátiles.
 
@@ -15,7 +33,8 @@ Antes de sumergirnos en el mundo del rigging, asegúrate de tener todo listo:
 *   **Blender:** Descarga la última versión desde [blender.org](https://www.blender.org/download/). Este tutorial es compatible con Blender 2.8x y versiones posteriores.
 *   **Imagen del Personaje:** Es fundamental que tengas una imagen de tu personaje con las **partes del cuerpo separadas** (cabeza, torso, brazo, antebrazo, etc.). Lo ideal es tener cada parte como un archivo PNG con fondo transparente.
 
-> **💡 Consejo:** Un buen diseño de personaje, ya separado por piezas, te ahorrará mucho tiempo y te facilitará enormemente el proceso de rigging.
+> [!TIP]
+> **Consejo de Diseño:** Un buen diseño de personaje, ya separado por piezas desde su concepción, te ahorrará mucho tiempo y te facilitará enormemente el proceso de rigging.
 
 ---
 
@@ -47,7 +66,10 @@ Vamos a darle forma a ese esqueleto.
 3.  Selecciona la punta de un hueso y presiona **`E`** para extruir nuevos huesos, formando la columna, el cuello y la cabeza.
 4.  Para las extremidades, extruye desde las articulaciones (hombros y caderas) para crear los brazos y las piernas.
 
-**Diagrama del Esqueleto:**
+<details>
+<summary>🦴 <b>Ver Diagrama Conceptual del Esqueleto</b></summary>
+
+A continuación se muestra la sugerencia de jerarquía para los huesos principales:
 
 ```mermaid
 graph TD
@@ -72,6 +94,8 @@ graph TD
     S --> T[Pantorrilla_R];
     T --> U[Pie_R];
 ```
+
+</details>
 
 ### Paso 2.4: Nombrar los Huesos
 
@@ -118,7 +142,8 @@ La Cinemática Inversa (IK) te permite mover una cadena de huesos (como un brazo
     *   **Bone:** Selecciona el hueso controlador que creaste (`control_mano.L`).
     *   **Chain Length:** Ajústalo a `2` para que afecte al antebrazo y al brazo.
 
-> Ahora, al mover el hueso controlador, ¡todo el brazo se moverá de forma natural!
+> [!NOTE]
+> ¡Al mover el hueso controlador que acabas de configurar, todo el brazo se moverá de forma conectada natural!
 
 ---
 
@@ -167,4 +192,8 @@ Mantén tu repositorio actualizado con tu increíble trabajo.
     git push origin main
     ```
 
-¡Y eso es todo! Has mejorado tu rig y tu repositorio. Ahora tienes un personaje 2D con un esqueleto avanzado, listo para protagonizar tus animaciones. ¡Espero que este tutorial mejorado te sea de gran ayuda!
+[↑ Volver al inicio](#-tutorial-completo-de-rigging-2d-en-blender-de-cero-a-héroe)
+
+---
+
+> ✨ **Documento elaborado para Tópicos Avanzados de Programación.** ¡Dale una estrella ⭐ al repositorio si te fue de utilidad!
