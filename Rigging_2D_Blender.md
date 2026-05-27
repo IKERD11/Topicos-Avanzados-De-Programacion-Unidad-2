@@ -4,7 +4,7 @@
 
 En este tutorial, no solo aprenderás a construir un esqueleto, sino también a implementar técnicas avanzadas como la **Cinemática Inversa (IK)** para lograr movimientos fluidos y naturales.
 
-![Referencia de Rigging](1.png)
+> *Nota: Falta imagen de Referencia de Rigging.*
 
 ---
 
@@ -36,7 +36,7 @@ El esqueleto es el corazón de nuestro rig.
 2.  Añade una armadura: `Add > Armature`.
 3.  En las propiedades del `Armature`, ve a `Viewport Display` y activa **`In Front`**. Esto mantendrá los huesos siempre visibles.
 
-![Hueso inicial](2.png)
+> *Nota: Falta captura de hueso inicial.*
 
 ### Paso 2.3: Construyendo el Esqueleto
 
@@ -94,7 +94,7 @@ Un rig bien organizado es un rig feliz. En `Edit Mode`, selecciona un hueso y pr
 2.  En el `Armature`, entra en **`Pose Mode`** para poder mover los huesos y ver cómo afectan a la malla en tiempo real.
 3.  Selecciona un hueso (en `Pose Mode`) y pinta sobre la malla para ajustar su influencia: **rojo** para máxima influencia, **azul** para nula.
 
-![Weight Painting](3.png)
+> *Nota: Falta captura de Weight Painting.*
 
 ---
 
@@ -127,23 +127,23 @@ La Cinemática Inversa (IK) te permite mover una cadena de huesos (como un brazo
 Para una comprensión más visual y profunda, estos tutoriales son oro puro:
 
 1.  **2D Cutout Animation in Blender (Completo):**
-    *   [Ver en YouTube](https://www.youtube.com/watch?v=wQY_2iCEHwI)
+    *   [Ver en YouTube](https://www.youtube.com/watch?v=oqyW-i32W_0)
     *   Un clásico que cubre todo el proceso.
 
 2.  **Blender 2D Rigging for Beginners (Ideal para empezar):**
-    *   [Ver en YouTube](https://www.youtube.com/watch?v=Sg8Zp4V_T8c)
+    *   [Ver en YouTube](https://www.youtube.com/watch?v=JL87x9R3lYM)
     *   Claro, conciso y perfecto para principiantes.
 
 3.  **Advanced 2D Rigging (Técnicas Pro):**
-    *   [Ver en YouTube](https://www.youtube.com/watch?v=wumD9G3t43A)
+    *   [Ver en YouTube](https://www.youtube.com/watch?v=CQKQk0qw5W8)
     *   Explora conceptos más avanzados para llevar tu rig al siguiente nivel.
 
 4.  **¡NUEVO! Rigging con IK en Blender para 2D:**
-    *   [Ver en YouTube](https://www.youtube.com/watch?v=Kric-c-4uJg)
+    *   [Ver en YouTube](https://www.youtube.com/watch?v=H9s51TbgKFI)
     *   Un excelente tutorial enfocado específicamente en la configuración de IK para personajes 2D.
 
 5.  **¡NUEVO! Animación de Personajes 2D en Blender:**
-    *   [Ver en YouTube](https://www.youtube.com/watch?v=d2n41z2s9yA)
+    *   [Ver en YouTube](https://www.youtube.com/watch?v=CUrfA6MXU2E)
     *   Una vez que tu rig esté listo, este video te enseñará a darle vida.
 
 ---
