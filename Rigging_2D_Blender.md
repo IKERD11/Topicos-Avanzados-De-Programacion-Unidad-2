@@ -22,6 +22,11 @@
 
 En este tutorial, no solo aprenderás a construir un esqueleto, sino también a implementar técnicas avanzadas como la **Cinemática Inversa (IK)** para lograr movimientos fluidos y naturales.
 
+### 🎥 Demostración del Resultado Final
+*Haz clic en la imagen a continuación para ver un ejemplo de lo que lograrás al finalizar:*
+
+[![Demostración de Animación 2D en Blender](https://img.youtube.com/vi/oqyW-i32W_0/maxresdefault.jpg)](https://www.youtube.com/watch?v=oqyW-i32W_0 "Ver demostración de animación")
+
 ![Referencia de Rigging](1.png)
 
 ---
