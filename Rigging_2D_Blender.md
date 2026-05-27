@@ -1,8 +1,8 @@
-# Tutorial Completo de Rigging 2D en Blender
+# Tutorial Completo de Rigging 2D en Blender: De Cero a Héroe
 
-¡Bienvenido a este tutorial sobre rigging 2D en Blender! El rigging es el proceso de crear un esqueleto (armature) para un personaje u objeto para que pueda ser animado. Aunque Blender es un software 3D, tiene herramientas muy potentes para crear animaciones 2D de alta calidad.
+¡Bienvenido a esta guía completa sobre rigging 2D en Blender! El **rigging** es el proceso de crear un esqueleto (armature) para un personaje, permitiendo que cobre vida a través de la animación. Aunque Blender es famoso por su entorno 3D, sus herramientas para animación 2D son increíblemente potentes y versátiles.
 
-En esta guía, aprenderás a crear un sistema de huesos para un personaje 2D, similar al de la imagen de referencia, para prepararlo para la animación.
+En este tutorial, no solo aprenderás a construir un esqueleto, sino también a implementar técnicas avanzadas como la **Cinemática Inversa (IK)** para lograr movimientos fluidos y naturales.
 
 ![Referencia de Rigging](1.png)
 
@@ -10,10 +10,12 @@ En esta guía, aprenderás a crear un sistema de huesos para un personaje 2D, si
 
 ## 1. Prerrequisitos
 
-Antes de comenzar, asegúrate de tener lo siguiente:
+Antes de sumergirnos en el mundo del rigging, asegúrate de tener todo listo:
 
 *   **Blender:** Descarga la última versión desde [blender.org](https://www.blender.org/download/). Este tutorial es compatible con Blender 2.8x y versiones posteriores.
-*   **Imagen del Personaje:** Necesitarás una imagen de tu personaje con las partes del cuerpo separadas (cabeza, torso, brazos, piernas, etc.) en capas o como archivos PNG transparentes. Esto facilita el proceso de rigging.
+*   **Imagen del Personaje:** Es fundamental que tengas una imagen de tu personaje con las **partes del cuerpo separadas** (cabeza, torso, brazo, antebrazo, etc.). Lo ideal es tener cada parte como un archivo PNG con fondo transparente.
+
+> **💡 Consejo:** Un buen diseño de personaje, ya separado por piezas, te ahorrará mucho tiempo y te facilitará enormemente el proceso de rigging.
 
 ---
 
@@ -21,29 +23,29 @@ Antes de comenzar, asegúrate de tener lo siguiente:
 
 ### Paso 2.1: Preparar el Espacio de Trabajo
 
-1.  Abre Blender y selecciona `2D Animation` en la pantalla de inicio. Esto preconfigurará el espacio de trabajo para animación 2D.
-2.  Ve a la vista de cámara (`Numpad 0`) y asegúrate de estar en una vista ortográfica.
-3.  Importa la imagen de tu personaje. Ve a `Add > Image > As Planes`. Si no ves esta opción, actívala en `Edit > Preferences > Add-ons` y busca "Import Images as Planes".
-4.  Selecciona la imagen de tu personaje y asegúrate de que esté correctamente orientada.
+1.  Abre Blender y selecciona `2D Animation`. Esto configura el entorno ideal para nuestro trabajo.
+2.  Asegúrate de estar en la **vista de cámara** (`Numpad 0`) y en modo ortográfico.
+3.  Importa las partes de tu personaje usando `Add > Image > As Planes`. Si no encuentras esta opción, actívala en `Edit > Preferences > Add-ons` buscando "Import Images as Planes".
+4.  Organiza las diferentes partes del cuerpo en la vista, ensamblando a tu personaje.
 
 ### Paso 2.2: Creación del Esqueleto (Armature)
 
-El esqueleto es la base de nuestro rig.
+El esqueleto es el corazón de nuestro rig.
 
-1.  Coloca el cursor 3D en el centro de tu personaje (`Shift + C` y luego ajusta si es necesario).
-2.  Añade una armadura: `Add > Armature`. Aparecerá un solo hueso.
-3.  En el panel de propiedades del `Armature`, ve a `Viewport Display` y activa la opción `In Front`. Esto asegurará que los huesos siempre sean visibles por encima de tu personaje.
+1.  Coloca el cursor 3D en el centro de tu personaje (`Shift + C`).
+2.  Añade una armadura: `Add > Armature`.
+3.  En las propiedades del `Armature`, ve a `Viewport Display` y activa **`In Front`**. Esto mantendrá los huesos siempre visibles.
 
 ![Hueso inicial](2.png)
 
 ### Paso 2.3: Construyendo el Esqueleto
 
-Ahora, extruiremos el hueso inicial para formar el esqueleto completo.
+Vamos a darle forma a ese esqueleto.
 
-1.  Selecciona el `Armature` y entra en `Edit Mode` (`Tab`).
-2.  Mueve y escala el primer hueso para que se ajuste a una parte del cuerpo, como la pelvis o el torso.
-3.  Selecciona la punta (círculo pequeño) de un hueso y presiona `E` para extruir un nuevo hueso. Crea los huesos para la columna, el cuello y la cabeza.
-4.  Para las extremidades, vuelve a seleccionar la articulación correspondiente (por ejemplo, el hombro) y extruye los huesos para el brazo, antebrazo y mano. Haz lo mismo para las piernas.
+1.  Entra en **`Edit Mode`** (`Tab`).
+2.  Mueve y escala el primer hueso para que se ajuste a la **pelvis** o al **torso inferior**.
+3.  Selecciona la punta de un hueso y presiona **`E`** para extruir nuevos huesos, formando la columna, el cuello y la cabeza.
+4.  Para las extremidades, extruye desde las articulaciones (hombros y caderas) para crear los brazos y las piernas.
 
 **Diagrama del Esqueleto:**
 
@@ -53,19 +55,19 @@ graph TD
     B --> C[Pecho];
     C --> D[Cuello];
     D --> E[Cabeza];
-    C --> F[Hombro_L];
+    C -- "Extruir" --> F[Hombro_L];
     F --> G[Brazo_L];
     G --> H[Antebrazo_L];
     H --> I[Mano_L];
-    C --> J[Hombro_R];
+    C -- "Extruir" --> J[Hombro_R];
     J --> K[Brazo_R];
     K --> L[Antebrazo_R];
     L --> M[Mano_R];
-    A --> N[Cadera_L];
+    A -- "Extruir" --> N[Cadera_L];
     N --> O[Pierna_L];
     O --> P[Pantorrilla_L];
     P --> Q[Pie_L];
-    A --> R[Cadera_R];
+    A -- "Extruir" --> R[Cadera_R];
     R --> S[Pierna_R];
     S --> T[Pantorrilla_R];
     T --> U[Pie_R];
@@ -73,66 +75,96 @@ graph TD
 
 ### Paso 2.4: Nombrar los Huesos
 
-Es una buena práctica nombrar cada hueso para identificarlos fácilmente. En `Edit Mode`, selecciona un hueso y presiona `F2` para renombrarlo. Usa sufijos como `.L` para la izquierda y `.R` para la derecha (ej. `brazo.L`, `brazo.R`).
+Un rig bien organizado es un rig feliz. En `Edit Mode`, selecciona un hueso y presiona `F2` para renombrarlo. Usa sufijos como **`.L`** (izquierda) y **`.R`** (derecha).
 
 ---
 
 ## 3. Parentesco y Weight Painting
 
-### Paso 3.1: Parentesco del Personaje al Esqueleto
+### Paso 3.1: Conectando el Personaje al Esqueleto
 
-Ahora conectaremos la malla (la imagen del personaje) al esqueleto.
+1.  En `Object Mode`, selecciona todas las partes de la malla de tu personaje, y finalmente, con `Shift + Click`, selecciona el `Armature`.
+2.  Presiona `Ctrl + P` y elige **`With Automatic Weights`**.
 
-1.  Sal del `Edit Mode` y ve a `Object Mode`.
-2.  Selecciona primero la malla de tu personaje, luego `Shift + Click` en el `Armature`.
-3.  Presiona `Ctrl + P` y selecciona `With Automatic Weights`. Blender intentará asignar automáticamente qué partes de la malla son controladas por cada hueso.
+### Paso 3.2: El Arte del Weight Painting
 
-### Paso 3.2: Ajustes con Weight Painting
+`Automatic Weights` es un buen punto de partida, pero el **`Weight Painting`** te da el control total.
 
-`Automatic Weights` no siempre es perfecto. El `Weight Painting` te permite ajustar la influencia de cada hueso sobre la malla.
-
-1.  Selecciona el `Armature`, luego `Shift + Click` en la malla.
-2.  Entra en `Weight Paint Mode` (`Ctrl + Tab`).
-3.  En `Pose Mode` para el `Armature` (puedes cambiarlo en el menú de modos), selecciona un hueso para ver su influencia.
-4.  Pinta sobre la malla para añadir (rojo) o quitar (azul) influencia.
+1.  Selecciona el `Armature`, luego la malla, y entra en **`Weight Paint Mode`** (`Ctrl + Tab`).
+2.  En el `Armature`, entra en **`Pose Mode`** para poder mover los huesos y ver cómo afectan a la malla en tiempo real.
+3.  Selecciona un hueso (en `Pose Mode`) y pinta sobre la malla para ajustar su influencia: **rojo** para máxima influencia, **azul** para nula.
 
 ![Weight Painting](3.png)
 
 ---
 
-## 4. Videos de Referencia
+## 4. Cinemática Inversa (IK) - ¡Magia para Animar!
 
-Para una comprensión más profunda, te recomiendo estos excelentes tutoriales en video:
+La Cinemática Inversa (IK) te permite mover una cadena de huesos (como un brazo o una pierna) simplemente moviendo el último hueso de la cadena (la mano o el pie).
 
-1.  **2D Cutout Animation in Blender 2.8:**
-    *   [Ver en YouTube](https://www.youtube.com/watch?v=wQY_2iCEHwI)
-    *   Este video cubre todo el proceso, desde la importación hasta la animación.
+### Paso 4.1: Creando el Hueso Controlador IK
 
-2.  **Blender 2D Rigging Tutorial for Beginners:**
-    *   [Ver en YouTube](https://www.youtube.com/watch?v=Sg8Zp4V_T8c)
-    *   Un tutorial muy claro y conciso, ideal para empezar.
+1.  En `Edit Mode`, selecciona la punta de la mano o el pie y extruye un nuevo hueso (`E`).
+2.  Desconéctalo de la cadena principal: `Alt + P > Clear Parent`.
+3.  Nómbralo claramente, por ejemplo, `control_mano.L`.
 
-3.  **Advanced 2D Rigging in Blender:**
-    *   [Ver en YouTube](https://www.youtube.com/watch?v=wumD9G3t43A)
-    *   Para cuando te sientas más cómodo y quieras explorar técnicas más avanzadas.
+### Paso 4.2: Aplicando la Restricción IK
+
+1.  Ve a **`Pose Mode`**.
+2.  Selecciona el hueso del **antebrazo** (o la pantorrilla).
+3.  Ve al panel de `Bone Constraints` (el icono de la cadena) y añade una restricción **`Inverse Kinematics`**.
+4.  En la configuración de la restricción:
+    *   **Target:** Elige tu `Armature`.
+    *   **Bone:** Selecciona el hueso controlador que creaste (`control_mano.L`).
+    *   **Chain Length:** Ajústalo a `2` para que afecte al antebrazo y al brazo.
+
+> Ahora, al mover el hueso controlador, ¡todo el brazo se moverá de forma natural!
 
 ---
 
-## 5. Subir a GitHub
+## 5. Videos de Referencia (¡Más Recursos!)
 
-Una vez que hayas creado tu archivo `.md` y cualquier otro archivo de proyecto, puedes subirlos a tu repositorio de GitHub.
+Para una comprensión más visual y profunda, estos tutoriales son oro puro:
 
-1.  **Clona tu repositorio:**
+1.  **2D Cutout Animation in Blender (Completo):**
+    *   [Ver en YouTube](https://www.youtube.com/watch?v=wQY_2iCEHwI)
+    *   Un clásico que cubre todo el proceso.
+
+2.  **Blender 2D Rigging for Beginners (Ideal para empezar):**
+    *   [Ver en YouTube](https://www.youtube.com/watch?v=Sg8Zp4V_T8c)
+    *   Claro, conciso y perfecto para principiantes.
+
+3.  **Advanced 2D Rigging (Técnicas Pro):**
+    *   [Ver en YouTube](https://www.youtube.com/watch?v=wumD9G3t43A)
+    *   Explora conceptos más avanzados para llevar tu rig al siguiente nivel.
+
+4.  **¡NUEVO! Rigging con IK en Blender para 2D:**
+    *   [Ver en YouTube](https://www.youtube.com/watch?v=Kric-c-4uJg)
+    *   Un excelente tutorial enfocado específicamente en la configuración de IK para personajes 2D.
+
+5.  **¡NUEVO! Animación de Personajes 2D en Blender:**
+    *   [Ver en YouTube](https://www.youtube.com/watch?v=d2n41z2s9yA)
+    *   Una vez que tu rig esté listo, este video te enseñará a darle vida.
+
+---
+
+## 6. Subir a GitHub
+
+Mantén tu repositorio actualizado con tu increíble trabajo.
+
+1.  **Añade, confirma y sube tus cambios:**
     ```bash
-    git clone https://github.com/IKERD11/Topicos-Avanzados-De-Programacion-Unidad-2.git
-    ```
-2.  **Mueve tus archivos al repositorio clonado.**
-3.  **Añade, confirma y sube los cambios:**
-    ```bash
+    # Navega a la carpeta de tu repositorio si no estás en ella
     cd Topicos-Avanzados-De-Programacion-Unidad-2
+    
+    # Añade todos los archivos nuevos o modificados
     git add .
-    git commit -m "Añadido tutorial de rigging 2D en Blender"
+    
+    # Crea un commit con un mensaje descriptivo
+    git commit -m "Tutorial de rigging 2D mejorado con IK y más recursos"
+    
+    # Sube los cambios a GitHub
     git push origin main
     ```
 
-¡Y eso es todo! Ahora tienes un personaje 2D con rig en Blender, listo para ser animado. ¡Espero que este tutorial te haya sido de gran ayuda!
+¡Y eso es todo! Has mejorado tu rig y tu repositorio. Ahora tienes un personaje 2D con un esqueleto avanzado, listo para protagonizar tus animaciones. ¡Espero que este tutorial mejorado te sea de gran ayuda!
