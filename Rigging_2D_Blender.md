@@ -24,9 +24,7 @@ En este tutorial, no solo aprenderás a construir un esqueleto, sino también a 
 
 ### 🎥 Animación Final
 
-<video src="./animacion.mp4" autoplay loop muted playsinline width="100%" title="Demostración de animación 2D en Blender"></video>
-
-> *Nota: Para que este banner de video funcione, asegúrate de colocar tu archivo de video llamado `animacion.mp4` en esta misma carpeta.*
+https://github.com/IKERD11/Topicos-Avanzados-De-Programacion-Unidad-2/raw/master/animacion.mp4
 
 ![Referencia de Rigging](1.png)
 
