@@ -4,7 +4,7 @@
 
 En esta guía, aprenderás a crear un sistema de huesos para un personaje 2D, similar al de la imagen de referencia, para prepararlo para la animación.
 
-![Referencia de Rigging](https://i.imgur.com/your_image_reference.png)
+![Referencia de Rigging](1.png)
 
 ---
 
@@ -34,7 +34,7 @@ El esqueleto es la base de nuestro rig.
 2.  Añade una armadura: `Add > Armature`. Aparecerá un solo hueso.
 3.  En el panel de propiedades del `Armature`, ve a `Viewport Display` y activa la opción `In Front`. Esto asegurará que los huesos siempre sean visibles por encima de tu personaje.
 
-![Hueso inicial](https://i.imgur.com/your_initial_bone.png)
+![Hueso inicial](2.png)
 
 ### Paso 2.3: Construyendo el Esqueleto
 
@@ -96,7 +96,7 @@ Ahora conectaremos la malla (la imagen del personaje) al esqueleto.
 3.  En `Pose Mode` para el `Armature` (puedes cambiarlo en el menú de modos), selecciona un hueso para ver su influencia.
 4.  Pinta sobre la malla para añadir (rojo) o quitar (azul) influencia.
 
-![Weight Painting](https://i.imgur.com/your_weight_paint.png)
+![Weight Painting](3.png)
 
 ---
 
