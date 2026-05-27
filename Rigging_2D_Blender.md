@@ -157,12 +157,17 @@ Una vez que tu esqueleto y la IK funcionan correctamente, ver tantos huesos octa
 
 Esto es un estándar en la industria porque logra que el rig sea interactivo, limpio y mucho más intuitivo para el animador (evitando clics accidentales).
 
-### Paso 5.1: Crear la Geometría Custom
+### Paso 5.1: Crear y Modelar la Geometría Custom
+No necesitas ser un modelador experto. Los controladores suelen ser líneas simples o "alambres" (wireframes) para que no bloqueen la vista de tu dibujo 2D. 
+
 1. Asegúrate de estar en **`Object Mode`**.
-2. Añade un plano o círculo: `Add > Mesh > Circle` (la malla debe estar alineada al plano de tu personaje, en 2D suele ser de frente a la vista ortográfica).
-3. Entra a **`Edit Mode`** (<kbd>Tab</kbd>) en este círculo y modifícalo para que parezca un controlador (ej. escálalo, dale forma de flecha o de anillo).
-4. Vuelve a **`Object Mode`**, presiona <kbd>F2</kbd> y nómbralo algo descriptivo como `WGT_Mano.L` (WGT significa *Widget*).
-5. **(Opcional pero muy recomendado):** Mueve todas tus formas personalizadas a una nueva Colección (presionando <kbd>M</kbd>) llamada "Rig_Shapes" y oculta la colección. No las necesitas visibles en la escena general.
+2. Añade un círculo básico: `Add > Mesh > Circle`. (Selecciona en el menú inferior izquierdo *Align a View* si quieres que nazca frente a ti).
+3. Entra a **`Edit Mode`** (<kbd>Tab</kbd>). Aquí viene la parte divertida: darle forma.
+   * **Para un controlador circular suave:** Puedes dejar el círculo tal como está.
+   * **Para crear flechas (súper usadas en controladores IK de manos/pies):** Selecciona algunos vértices del círculo y bórralos (<kbd>X</kbd> > `Vertices`). Extruye (<kbd>E</kbd>) vértices simples para dibujar líneas que formen una cruz o una flecha.
+   * *Importante:* Asegúrate de borrar cualquier cara interna (`Faces`); quieres que tu controlador sea **puro borde (Edges)** para que al ponerlo se vea como una guía transparente.
+4. Vuelve a **`Object Mode`**, presiona <kbd>F2</kbd> y nómbralo de forma profesional. La regla en la industria es usar el sufijo `WGT_`: por ejemplo, `WGT_Control_Mano.L` (WGT significa *Widget*).
+5. **Organización Ninja:** Selecciona tus formas creadas, presiona <kbd>M</kbd> y muévelas a una nueva Colección llamada `Rig_Shapes`. Luego, oculta esa colección desmarcando el "Ojo" en el *Outliner*. ¡Tus formas no necesitan ser vistas en el proyecto final, Blender solo robará su diseño!
 
 ### Paso 5.2: Asignar la Forma al Hueso
 1. Selecciona tu **Armature** principal y entra en **`Pose Mode`** (<kbd>Ctrl</kbd> + <kbd>Tab</kbd>).
@@ -173,7 +178,18 @@ Esto es un estándar en la industria porque logra que el rig sea interactivo, li
 6. ¡La forma mágica reemplazará al hueso! Usa las opciones que están justo debajo para ajustar su `Scale`, `Translation` (posición) y `Rotation` hasta que encaje perfecto con la mano.
 
 > [!TIP]
-> **Reutilización:** Puedes usar el mismo círculo o widget para diferentes huesos. Al ajustar la escala y traslación dentro de las propiedades del propio hueso, la malla original `WGT` no se verá afectada.
+> **Reutilización:** Puedes usar el mismo círculo o widget para diferentes huesos. Al ajustar la escala y traslación dentro de las propiedades del propio hueso (`Bone Properties`), la malla original `WGT` almacenada en tu colección no se verá afectada.
+
+### Extra: Estandariza tus Diseños de Controladores 🎨
+Para darle consistencia visual a tu Rig, la industria suele seguir la siguiente convención geométrica:
+
+| Parte del Cuerpo | Tipo de Controlador "Custom Bone" Sugerido |
+| :--- | :--- |
+| **Raíz / Root** (El que mueve todo) | Círculo grande con flechas cardinales grandes en la base. |
+| **IK de Manos y Pies** | Formas de cajas o cubos vacíos (Wireframe). |
+| **Codos y Rodillas (Pole Targets)** | Círculos pequeños o simples estrellas de 4 puntas flotando en el espacio detrás/delante de la articulación. |
+| **Huesos del Torso/Columna** | Círculos simples que abrazan la cintura/pecho. |
+| **Huesos Faciales (Cejas, ojos)** | Cruces minúsculas o diminutos triángulos direccionales. |
 
 ---
 
