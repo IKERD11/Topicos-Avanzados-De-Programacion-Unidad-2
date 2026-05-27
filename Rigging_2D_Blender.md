@@ -379,6 +379,21 @@ Para una comprensión más visual y profunda, estos tutoriales son oro puro:
     *   [Ver en YouTube](https://www.youtube.com/watch?v=CUrfA6MXU2E)
     *   Una vez que tu rig esté listo, este video te enseñará a darle vida.
 
+### 🦴 Referencias Especiales: Dominando los Custom Bones
+Si quieres dominar por completo el *Capítulo 5* de este tutorial, te recomendamos estos videos enfocados exclusivamente en controladores:
+
+6.  **Cómo modelar Custom Bone Shapes paso a paso:**
+    *   [Ver Búsqueda en YouTube](https://www.youtube.com/results?search_query=Blender+Custom+Bone+Shapes+Tutorial)
+    *   Tutoriales visuales de cómo la comunidad moldea alambres, círculos y flechas para convertirlos en controladores (Widgets) para sus personajes.
+
+7.  **Arreglando Rotaciones y Escalas de Custom Bones:**
+    *   [Ver Búsqueda en YouTube](https://www.youtube.com/results?search_query=Blender+Custom+Bone+Rotation+Fix)
+    *   Ideal si tu controlador queda apuntando hacia otro lado o el "Punto de Origen" se desfasó. Una vista práctica a cómo aplicar el `Ctrl + A` correctamente en Edit Mode.
+
+8.  **Uso de Scripts y Addons para Custom Bones Automáticos:**
+    *   [Ver Búsqueda en YouTube](https://www.youtube.com/results?search_query=Blender+Bone+Custom+Shapes+Addon)
+    *   Muestra cómo instalar Addons gratuitos (como *Bone Widget*) que incluyen galerías prefabricadas de flechas y cajas para que escupas controladores con 1 solo clic.
+
 ---
 
 ## 12. Subir a GitHub
