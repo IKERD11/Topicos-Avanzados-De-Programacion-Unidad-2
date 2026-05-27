@@ -157,39 +157,85 @@ Una vez que tu esqueleto y la IK funcionan correctamente, ver tantos huesos octa
 
 Esto es un estándar en la industria porque logra que el rig sea interactivo, limpio y mucho más intuitivo para el animador (evitando clics accidentales).
 
-### Paso 5.1: Crear y Modelar la Geometría Custom
-No necesitas ser un modelador experto. Los controladores suelen ser líneas simples o "alambres" (wireframes) para que no bloqueen la vista de tu dibujo 2D. 
+### 5.1. El Arte de Modelar un Controlador (Widgets)
+No necesitas ser un modelador 3D experto, pero sí debes conocer la principal regla de oro: **Los controladores bajo ningún motivo deben tapar la visión del animador.** 
 
-1. Asegúrate de estar en **`Object Mode`**.
-2. Añade un círculo básico: `Add > Mesh > Circle`. (Selecciona en el menú inferior izquierdo *Align a View* si quieres que nazca frente a ti).
-3. Entra a **`Edit Mode`** (<kbd>Tab</kbd>). Aquí viene la parte divertida: darle forma.
-   * **Para un controlador circular suave:** Puedes dejar el círculo tal como está.
-   * **Para crear flechas (súper usadas en controladores IK de manos/pies):** Selecciona algunos vértices del círculo y bórralos (<kbd>X</kbd> > `Vertices`). Extruye (<kbd>E</kbd>) vértices simples para dibujar líneas que formen una cruz o una flecha.
-   * *Importante:* Asegúrate de borrar cualquier cara interna (`Faces`); quieres que tu controlador sea **puro borde (Edges)** para que al ponerlo se vea como una guía transparente.
-4. Vuelve a **`Object Mode`**, presiona <kbd>F2</kbd> y nómbralo de forma profesional. La regla en la industria es usar el sufijo `WGT_`: por ejemplo, `WGT_Control_Mano.L` (WGT significa *Widget*).
-5. **Organización Ninja:** Selecciona tus formas creadas, presiona <kbd>M</kbd> y muévelas a una nueva Colección llamada `Rig_Shapes`. Luego, oculta esa colección desmarcando el "Ojo" en el *Outliner*. ¡Tus formas no necesitan ser vistas en el proyecto final, Blender solo robará su diseño!
+Para lograr esto, las mallas que crees deben ser puros **Edges** (bordes o alambres) sin ninguna cara (**Faces**). 
 
-### Paso 5.2: Asignar la Forma al Hueso
-1. Selecciona tu **Armature** principal y entra en **`Pose Mode`** (<kbd>Ctrl</kbd> + <kbd>Tab</kbd>).
-2. Selecciona el hueso que deseas modificar (por ejemplo, el *Controlador IK* de la mano).
-3. Ve al panel de **`Bone Properties`** (el ícono del hueso verde a la derecha).
-4. Desplázate hacia abajo hasta la sección **`Viewport Display`**.
-5. Donde dice **`Custom Object`**, haz clic en el cuentagotas y selecciona la malla `WGT_Mano.L` que creaste.
-6. ¡La forma mágica reemplazará al hueso! Usa las opciones que están justo debajo para ajustar su `Scale`, `Translation` (posición) y `Rotation` hasta que encaje perfecto con la mano.
+#### Método A: Creación mediante primitivas (Rápido)
+1. En **`Object Mode`**, presiona <kbd>Shift</kbd> + <kbd>A</kbd> > `Mesh` > `Circle`.
+2. Una vez que aparezca, ábrelo en el menú inferior izquierdo y activa **"Align to View"** para que lo veas completamente de frente.
+3. Selecciona tu Círculo, entra en **`Edit Mode`** (<kbd>Tab</kbd>) y presiona <kbd>X</kbd> > `Only Faces` por si generó alguna.
+4. Redimensiona y ajusta los vértices moviéndolos (<kbd>G</kbd>) o escalándolos (<kbd>S</kbd>) hasta lograr la forma general que desees.
+
+#### Método B: La técnica del "Vértice Único" (Para dibujar figuras complejas como Flechas)
+1. Crea un Plano estándar desde *Object Mode*.
+2. Entra a **`Edit Mode`**, selecciona todo (<kbd>A</kbd>), presiona <kbd>M</kbd> y selecciona **`Merge At Center`**. ¡Ahora solo tienes un vértice microscópico en todo el plano!
+3. Pulsa <kbd>G</kbd> para mover la posición inicial de tu vértice.
+4. Presiona <kbd>E</kbd> para extruir (crear un nuevo vértice conectado por un borde). Sigue oprimiendo <kbd>E</kbd> repetidamente como si estuvieras trazando una línea para dibujar paso a paso cruces, flechas curvas, o perfiles personalizados que tengan sentido para ti.
+5. Selecciona el vértice final y el inicial presionando <kbd>Shift</kbd> + Clic izquierdo y presiona <kbd>F</kbd> para cerrar la figura. ¡Listo! Has dibujado a mano alzada tu controlador.
+
+---
+
+### 5.2. El Secreto del "Centro de Origen" (Origin Point)
+Uno de los errores más comunes al hacer Rigging es que el controlador aparezca muy lejos del hueso real, y muchas veces esto se debe al *Punto de Origen* (el puntito naranja).
+
+> [!WARNING]
+> Cuando asignas un "Custom Bone", Blender alinea el origen del Hueso con el origen (Origin Point) del Widget.
+
+**Pasos para alinear el Origen a la Perfección:**
+1. Selecciona tu Widget en *Object Mode*.
+2. Entra en *Edit Mode*, selecciona todos los vértices (<kbd>A</kbd>).
+3. Mueve la figura de forma manual (<kbd>G</kbd>) de modo que el **puntito naranja de origen** quede exactamente donde quieres que el controlador rote.
+   * *Ejemplo:* Si es un círculo para el codo, el punto naranja debe estar al exacto centro del círculo.
+4. Vuelve a *Object Mode* e inmediatamente aplícale la escala para evitar deformaciones raras después, presionando <kbd>Ctrl</kbd> + <kbd>A</kbd> > `Scale` & `Rotation`.
+
+---
+
+### 5.3. Asignación al Esqueleto y Resolviendo "El Problema de la Rotación Escasa"
+Ahora asignaremos esta forma que acabas de pulir a tus huesos de control (IKs).
+
+1. En **`Object Mode`**, presiona <kbd>F2</kbd> en tu nueva figura para renombrarla usando el prefijo universal: `WGT_Mano.L`.
+2. Luego ponla en una *Collection* diferente (<kbd>M</kbd>) llamada `Rig_Shapes` y escóndela usando el ojo en el *Outliner*.
+3. Selecciona tu esqueleto principal (Armature) y pásalo a **`Pose Mode`** (<kbd>Ctrl</kbd> + <kbd>Tab</kbd>).
+4. Selecciona tu hueso controlador.
+5. Ve a **`Bone Properties`** (Hueso Verde) > **`Viewport Display`** > **`Custom Object`** y selecciona tu malla `WGT_Mano.L`.
+
+#### 🔴 ¡Mi forma no mira hacia donde debería!
+A diferencia del modo objeto, las formas personalizadas suelen importarse con la rotación predeterminada del hueso (la Y es hacia arriba, X es a los lados, Z hacia atrás y hacia adelante del personaje en el eje Local). 
+
+Si tu forma está "costeada" u "horizontal":
+1. Dentro del mismo panel `Viewport Display` en tu hueso, debajo de la sección donde escogiste el `Custom Object`, verás tres casillas de **`Rotation` (X, Y, Z)**.
+2. Comienza a mover el valor **X** en tramos de 90° grados (90, -90). ¡Verás tu figura rotar sobre su propio eje hasta acomodarse de frente!
+3. Haz lo mismo con el valor **`Scale`** para agrandar globalmente el controlador en su lugar. Esta escala se aplica *únicamente* de manera visual y no afecta los datos brutos de la animación. 
+
+### 5.4. Estilizado Profesional: Grupos de Color
+Los *Custom Bones* se ven bien, ¡pero los colores marcan la diferencia entre Novato y Pro!
+
+1. Con tu Armature seleccionado en **`Pose Mode`**, ve a la pestaña **`Object Data Properties`** (el ícono verde del muñeco de palo, arriba del hueso).
+2. Abre la sección de **`Bone Collections`** o **`Bone Groups`** (dependiendo de la versión).
+3. Añade con el "plus" `+` algunas de las categorías comunes:
+   * **Controladores_Izquierdos**: Asígnales un tema global desde el selector de Color Set (normalmente ROJO).
+   * **Controladores_Derechos**: Asígnales color (normalmente AZUL).
+   * **Controladores_Centro** (Root, Cintura): Asígnales color (normalmente AMARILLO o VERDE).
+4. Luego, con todos tus *Custom Bones* de un lado seleccionados en el viewport, ve a este mismo panel y dale a **"Assign"**.
+¡Listo! Tus controladores ahora son coloridos, intuitivos y maravillosamente claros. Te evitará animar el brazo derecho cuando jurabas haber tomado el controlador del izquierdo.
 
 > [!TIP]
-> **Reutilización:** Puedes usar el mismo círculo o widget para diferentes huesos. Al ajustar la escala y traslación dentro de las propiedades del propio hueso (`Bone Properties`), la malla original `WGT` almacenada en tu colección no se verá afectada.
+> **Check de seguridad:** En las opciones globales de `Viewport Display` (panel Armature), asegúrate de que **`Wireframe`** esté activo. Esto previene que si, por descuido, tu widget tiene una "Cara/Face" invisible, actúe tapando en sombra a tu dibujo.
 
-### Extra: Estandariza tus Diseños de Controladores 🎨
-Para darle consistencia visual a tu Rig, la industria suele seguir la siguiente convención geométrica:
+---
+
+### Extra: Estándares Geométricos de la Industria 🎨
+Para darle consistencia visual a tu Rig, intenta crear y guardar en tu archivo principal (`Rig_Shapes`) el siguiente pack de geometrías de alambres:
 
 | Parte del Cuerpo | Tipo de Controlador "Custom Bone" Sugerido |
 | :--- | :--- |
-| **Raíz / Root** (El que mueve todo) | Círculo grande con flechas cardinales grandes en la base. |
-| **IK de Manos y Pies** | Formas de cajas o cubos vacíos (Wireframe). |
-| **Codos y Rodillas (Pole Targets)** | Círculos pequeños o simples estrellas de 4 puntas flotando en el espacio detrás/delante de la articulación. |
-| **Huesos del Torso/Columna** | Círculos simples que abrazan la cintura/pecho. |
-| **Huesos Faciales (Cejas, ojos)** | Cruces minúsculas o diminutos triángulos direccionales. |
+| **Raíz / Root** (El que mueve todo) | Círculo grande con cuatro enormes flechas cardinales extruídas. Debe estar a los pies del personaje, tocando la línea 0 de la cuadrícula mundial. |
+| **IK de Manos y Pies** | Cuadros o cajas (creadas extruyendo planos, no con Solidify) que encuadren la zona de apoyo de la palma o el talón. |
+| **Codos y Rodillas (Pole Targets)** | Diminutas esferas dibujadas a mano, o cruces (X) que floten exactamente en el espacio detrás de los codos. Al ser un objetivo que la rodilla persigue, una "mirilla" o "diana" dibujada sirve perfectamente. |
+| **Huesos del Torso/Columna** | Aros simples, escalados a lo ancho o ajustados a la silueta de los hombros, como una rebanada de cebolla visual. |
+| **Huesos Faciales (Si tu rig escala hasta allí)** | Pequeñas pirámides huecas o esferitas planas. |
 
 ---
 
