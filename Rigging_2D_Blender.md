@@ -4,7 +4,7 @@
 
 En este tutorial, no solo aprenderás a construir un esqueleto, sino también a implementar técnicas avanzadas como la **Cinemática Inversa (IK)** para lograr movimientos fluidos y naturales.
 
-> *Nota: Falta imagen de Referencia de Rigging.*
+![Referencia de Rigging](1.png)
 
 ---
 
@@ -36,7 +36,7 @@ El esqueleto es el corazón de nuestro rig.
 2.  Añade una armadura: `Add > Armature`.
 3.  En las propiedades del `Armature`, ve a `Viewport Display` y activa **`In Front`**. Esto mantendrá los huesos siempre visibles.
 
-> *Nota: Falta captura de hueso inicial.*
+![Hueso inicial](2.png)
 
 ### Paso 2.3: Construyendo el Esqueleto
 
@@ -94,7 +94,7 @@ Un rig bien organizado es un rig feliz. En `Edit Mode`, selecciona un hueso y pr
 2.  En el `Armature`, entra en **`Pose Mode`** para poder mover los huesos y ver cómo afectan a la malla en tiempo real.
 3.  Selecciona un hueso (en `Pose Mode`) y pinta sobre la malla para ajustar su influencia: **rojo** para máxima influencia, **azul** para nula.
 
-> *Nota: Falta captura de Weight Painting.*
+![Weight Painting](3.png)
 
 ---
 
