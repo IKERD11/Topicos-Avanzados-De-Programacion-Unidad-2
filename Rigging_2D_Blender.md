@@ -11,9 +11,10 @@
 - [2. Paso a Paso: Creación del Rig](#2-paso-a-paso-creación-del-rig)
 - [3. Parentesco y Weight Painting](#3-parentesco-y-weight-painting)
 - [4. Cinemática Inversa (IK)](#4-cinemática-inversa-ik---magia-para-animar)
-- [5. Animación Final](#5-animación-final)
-- [6. Videos de Referencia](#6-videos-de-referencia-más-recursos)
-- [7. Subir a GitHub](#7-subir-a-github)
+- [5. Formas Personalizadas (Custom Bones)](#5-formas-personalizadas-custom-bones---estilizando-tu-rig)
+- [6. Animación Final](#6-animación-final)
+- [7. Videos de Referencia](#7-videos-de-referencia-más-recursos)
+- [8. Subir a GitHub](#8-subir-a-github)
 
 </details>
 
@@ -150,7 +151,33 @@ La Cinemática Inversa (IK) te permite mover una cadena de huesos (como un brazo
 
 ---
 
-## 5. Animación Final
+## 5. Formas Personalizadas (Custom Bones) - Estilizando tu Rig
+
+Una vez que tu esqueleto y la IK funcionan correctamente, ver tantos huesos octaédricos (las formas por defecto) puede volverse confuso. Los **Custom Bones** (huesos personalizados) te permiten reemplazar la apariencia de los huesos por mallas geométricas (círculos, flechas, cuadrados) sin alterar sus funciones mecánicas.
+
+Esto es un estándar en la industria porque logra que el rig sea interactivo, limpio y mucho más intuitivo para el animador (evitando clics accidentales).
+
+### Paso 5.1: Crear la Geometría Custom
+1. Asegúrate de estar en **`Object Mode`**.
+2. Añade un plano o círculo: `Add > Mesh > Circle` (la malla debe estar alineada al plano de tu personaje, en 2D suele ser de frente a la vista ortográfica).
+3. Entra a **`Edit Mode`** (<kbd>Tab</kbd>) en este círculo y modifícalo para que parezca un controlador (ej. escálalo, dale forma de flecha o de anillo).
+4. Vuelve a **`Object Mode`**, presiona <kbd>F2</kbd> y nómbralo algo descriptivo como `WGT_Mano.L` (WGT significa *Widget*).
+5. **(Opcional pero muy recomendado):** Mueve todas tus formas personalizadas a una nueva Colección (presionando <kbd>M</kbd>) llamada "Rig_Shapes" y oculta la colección. No las necesitas visibles en la escena general.
+
+### Paso 5.2: Asignar la Forma al Hueso
+1. Selecciona tu **Armature** principal y entra en **`Pose Mode`** (<kbd>Ctrl</kbd> + <kbd>Tab</kbd>).
+2. Selecciona el hueso que deseas modificar (por ejemplo, el *Controlador IK* de la mano).
+3. Ve al panel de **`Bone Properties`** (el ícono del hueso verde a la derecha).
+4. Desplázate hacia abajo hasta la sección **`Viewport Display`**.
+5. Donde dice **`Custom Object`**, haz clic en el cuentagotas y selecciona la malla `WGT_Mano.L` que creaste.
+6. ¡La forma mágica reemplazará al hueso! Usa las opciones que están justo debajo para ajustar su `Scale`, `Translation` (posición) y `Rotation` hasta que encaje perfecto con la mano.
+
+> [!TIP]
+> **Reutilización:** Puedes usar el mismo círculo o widget para diferentes huesos. Al ajustar la escala y traslación dentro de las propiedades del propio hueso, la malla original `WGT` no se verá afectada.
+
+---
+
+## 6. Animación Final
 
 <div align="center">
   <h3>¡Mira el resultado en acción! 🎥</h3>
@@ -159,7 +186,7 @@ La Cinemática Inversa (IK) te permite mover una cadena de huesos (como un brazo
 
 ---
 
-## 6. Videos de Referencia (¡Más Recursos!)
+## 7. Videos de Referencia (¡Más Recursos!)
 
 Para una comprensión más visual y profunda, estos tutoriales son oro puro:
 
@@ -185,7 +212,7 @@ Para una comprensión más visual y profunda, estos tutoriales son oro puro:
 
 ---
 
-## 7. Subir a GitHub
+## 8. Subir a GitHub
 
 Mantén tu repositorio actualizado con tu increíble trabajo.
 
