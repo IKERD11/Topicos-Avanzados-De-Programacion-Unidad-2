@@ -43,7 +43,7 @@ Antes de sumergirnos en el mundo del rigging, asegúrate de tener todo listo:
 ### Paso 2.1: Preparar el Espacio de Trabajo
 
 1.  Abre Blender y selecciona `2D Animation`. Esto configura el entorno ideal para nuestro trabajo.
-2.  Asegúrate de estar en la **vista de cámara** (`Numpad 0`) y en modo ortográfico.
+2.  Asegúrate de estar en la **vista de cámara** (<kbd>Numpad 0</kbd>) y en modo ortográfico.
 3.  Importa las partes de tu personaje usando `Add > Image > As Planes`. Si no encuentras esta opción, actívala en `Edit > Preferences > Add-ons` buscando "Import Images as Planes".
 4.  Organiza las diferentes partes del cuerpo en la vista, ensamblando a tu personaje.
 
@@ -51,7 +51,7 @@ Antes de sumergirnos en el mundo del rigging, asegúrate de tener todo listo:
 
 El esqueleto es el corazón de nuestro rig.
 
-1.  Coloca el cursor 3D en el centro de tu personaje (`Shift + C`).
+1.  Coloca el cursor 3D en el centro de tu personaje (<kbd>Shift</kbd> + <kbd>C</kbd>).
 2.  Añade una armadura: `Add > Armature`.
 3.  En las propiedades del `Armature`, ve a `Viewport Display` y activa **`In Front`**. Esto mantendrá los huesos siempre visibles.
 
@@ -61,9 +61,9 @@ El esqueleto es el corazón de nuestro rig.
 
 Vamos a darle forma a ese esqueleto.
 
-1.  Entra en **`Edit Mode`** (`Tab`).
+1.  Entra en **`Edit Mode`** (<kbd>Tab</kbd>).
 2.  Mueve y escala el primer hueso para que se ajuste a la **pelvis** o al **torso inferior**.
-3.  Selecciona la punta de un hueso y presiona **`E`** para extruir nuevos huesos, formando la columna, el cuello y la cabeza.
+3.  Selecciona la punta de un hueso y presiona <kbd>E</kbd> para extruir nuevos huesos, formando la columna, el cuello y la cabeza.
 4.  Para las extremidades, extruye desde las articulaciones (hombros y caderas) para crear los brazos y las piernas.
 
 <details>
@@ -99,7 +99,7 @@ graph TD
 
 ### Paso 2.4: Nombrar los Huesos
 
-Un rig bien organizado es un rig feliz. En `Edit Mode`, selecciona un hueso y presiona `F2` para renombrarlo. Usa sufijos como **`.L`** (izquierda) y **`.R`** (derecha).
+Un rig bien organizado es un rig feliz. En `Edit Mode`, selecciona un hueso y presiona <kbd>F2</kbd> para renombrarlo. Usa sufijos como **`.L`** (izquierda) y **`.R`** (derecha).
 
 ---
 
@@ -107,16 +107,16 @@ Un rig bien organizado es un rig feliz. En `Edit Mode`, selecciona un hueso y pr
 
 ### Paso 3.1: Conectando el Personaje al Esqueleto
 
-1.  En `Object Mode`, selecciona todas las partes de la malla de tu personaje, y finalmente, con `Shift + Click`, selecciona el `Armature`.
-2.  Presiona `Ctrl + P` y elige **`With Automatic Weights`**.
+1.  En `Object Mode`, selecciona todas las partes de la malla de tu personaje, y finalmente, con <kbd>Shift</kbd> + **Click**, selecciona el `Armature`.
+2.  Presiona <kbd>Ctrl</kbd> + <kbd>P</kbd> y elige **`With Automatic Weights`**.
 
 ### Paso 3.2: El Arte del Weight Painting
 
 `Automatic Weights` es un buen punto de partida, pero el **`Weight Painting`** te da el control total.
 
-1.  Selecciona el `Armature`, luego la malla, y entra en **`Weight Paint Mode`** (`Ctrl + Tab`).
+1.  Selecciona el `Armature`, luego la malla, y entra en **`Weight Paint Mode`** (<kbd>Ctrl</kbd> + <kbd>Tab</kbd>).
 2.  En el `Armature`, entra en **`Pose Mode`** para poder mover los huesos y ver cómo afectan a la malla en tiempo real.
-3.  Selecciona un hueso (en `Pose Mode`) y pinta sobre la malla para ajustar su influencia: **rojo** para máxima influencia, **azul** para nula.
+3.  Selecciona un hueso (en `Pose Mode`) y pinta sobre la malla para ajustar su influencia: 🔴 **rojo** para máxima influencia, 🔵 **azul** para nula.
 
 ![Weight Painting](3.png)
 
@@ -128,8 +128,8 @@ La Cinemática Inversa (IK) te permite mover una cadena de huesos (como un brazo
 
 ### Paso 4.1: Creando el Hueso Controlador IK
 
-1.  En `Edit Mode`, selecciona la punta de la mano o el pie y extruye un nuevo hueso (`E`).
-2.  Desconéctalo de la cadena principal: `Alt + P > Clear Parent`.
+1.  En `Edit Mode`, selecciona la punta de la mano o el pie y extruye un nuevo hueso (<kbd>E</kbd>).
+2.  Desconéctalo de la cadena principal: <kbd>Alt</kbd> + <kbd>P</kbd> > `Clear Parent`.
 3.  Nómbralo claramente, por ejemplo, `control_mano.L`.
 
 ### Paso 4.2: Aplicando la Restricción IK
