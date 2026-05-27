@@ -51,15 +51,24 @@ Antes de sumergirnos en el mundo del rigging, asegúrate de tener todo listo:
 3.  Importa las partes de tu personaje usando `Add > Image > As Planes`. Si no encuentras esta opción, actívala en `Edit > Preferences > Add-ons` buscando "Import Images as Planes".
 4.  Organiza las diferentes partes del cuerpo en la vista, ensamblando a tu personaje.
 
+<br>
+
 ### Paso 2.2: Creación del Esqueleto (Armature)
 
 El esqueleto es el corazón de nuestro rig.
 
-1.  Coloca el cursor 3D en el centro de tu personaje (<kbd>Shift</kbd> + <kbd>C</kbd>).
-2.  Añade una armadura: `Add > Armature`.
-3.  En las propiedades del `Armature`, ve a `Viewport Display` y activa **`In Front`**. Esto mantendrá los huesos siempre visibles.
-
-![Hueso inicial](2.png)
+<table>
+  <tr>
+    <td width="60%">
+      <b>1.</b> Coloca el cursor 3D en el centro de tu personaje (<kbd>Shift</kbd> + <kbd>C</kbd>). <br><br>
+      <b>2.</b> Añade una armadura: <code>Add &gt; Armature</code>. <br><br>
+      <b>3.</b> En las propiedades del <code>Armature</code>, ve a <code>Viewport Display</code> y activa <b><code>In Front</code></b>. Esto mantendrá los huesos siempre visibles, incluso detrás del personaje.
+    </td>
+    <td width="40%">
+      <img src="./2.png" alt="Hueso inicial">
+    </td>
+  </tr>
+</table>
 
 ### Paso 2.3: Construyendo el Esqueleto
 
@@ -105,24 +114,35 @@ graph TD
 
 Un rig bien organizado es un rig feliz. En `Edit Mode`, selecciona un hueso y presiona <kbd>F2</kbd> para renombrarlo. Usa sufijos como **`.L`** (izquierda) y **`.R`** (derecha).
 
+<div align="right"><a href="#-tutorial-completo-de-rigging-2d-en-blender-de-cero-a-héroe">⬆️ Volver al inicio</a></div>
+
 ---
 
 ## 3. Parentesco y Weight Painting
 
 ### Paso 3.1: Conectando el Personaje al Esqueleto
 
-1.  En `Object Mode`, selecciona todas las partes de la malla de tu personaje, y finalmente, con <kbd>Shift</kbd> + **Click**, selecciona el `Armature`.
+1.  En `Object Mode`, selecciona todas las partes de la malla de tu personaje, y finalmente, con <kbd>Shift</kbd> + **Clic**, selecciona el `Armature`.
 2.  Presiona <kbd>Ctrl</kbd> + <kbd>P</kbd> y elige **`With Automatic Weights`**.
 
 ### Paso 3.2: El Arte del Weight Painting
 
-`Automatic Weights` es un buen punto de partida, pero el **`Weight Painting`** te da el control total.
+`Automatic Weights` es un buen punto de partida, pero el **`Weight Painting`** te da el control total de qué vértice sigue a qué hueso.
 
-1.  Selecciona el `Armature`, luego la malla, y entra en **`Weight Paint Mode`** (<kbd>Ctrl</kbd> + <kbd>Tab</kbd>).
-2.  En el `Armature`, entra en **`Pose Mode`** para poder mover los huesos y ver cómo afectan a la malla en tiempo real.
-3.  Selecciona un hueso (en `Pose Mode`) y pinta sobre la malla para ajustar su influencia: 🔴 **rojo** para máxima influencia, 🔵 **azul** para nula.
+<table>
+  <tr>
+    <td width="60%">
+      <b>1.</b> Selecciona el <code>Armature</code>, luego la malla, y entra en <b><code>Weight Paint Mode</code></b> (<kbd>Ctrl</kbd> + <kbd>Tab</kbd>). <br><br>
+      <b>2.</b> En el <code>Armature</code>, entra en <b><code>Pose Mode</code></b> para poder mover los huesos y ver cómo afectan a la malla en tiempo real. <br><br>
+      <b>3.</b> Selecciona un hueso (en <code>Pose Mode</code>) y pinta sobre la malla para ajustar su influencia: 🔴 <b>rojo</b> para máxima influencia, 🔵 <b>azul</b> para nula.
+    </td>
+    <td width="40%">
+      <img src="./3.png" alt="Weight Painting">
+    </td>
+  </tr>
+</table>
 
-![Weight Painting](3.png)
+<div align="right"><a href="#-tutorial-completo-de-rigging-2d-en-blender-de-cero-a-héroe">⬆️ Volver al inicio</a></div>
 
 ---
 
@@ -158,30 +178,39 @@ Una vez que tu esqueleto y la IK funcionan correctamente, ver tantos huesos octa
 Esto es un estándar en la industria porque logra que el rig sea interactivo, limpio y mucho más intuitivo para el animador (evitando clics accidentales).
 
 ### 5.1. El Arte de Modelar un Controlador (Widgets)
+
 No necesitas ser un modelador 3D experto, pero sí debes conocer la principal regla de oro: **Los controladores bajo ningún motivo deben tapar la visión del animador.** 
 
 Para lograr esto, las mallas que crees deben ser puros **Edges** (bordes o alambres) sin ninguna cara (**Faces**). 
 
-#### Método A: Creación mediante primitivas (Rápido)
+<details>
+<summary><b>▶️ Ver Método A: Creación mediante primitivas (Rápido)</b></summary>
+<br>
+
 1. En **`Object Mode`**, presiona <kbd>Shift</kbd> + <kbd>A</kbd> > `Mesh` > `Circle`.
 2. Una vez que aparezca, ábrelo en el menú inferior izquierdo y activa **"Align to View"** para que lo veas completamente de frente.
 3. Selecciona tu Círculo, entra en **`Edit Mode`** (<kbd>Tab</kbd>) y presiona <kbd>X</kbd> > `Only Faces` por si generó alguna.
 4. Redimensiona y ajusta los vértices moviéndolos (<kbd>G</kbd>) o escalándolos (<kbd>S</kbd>) hasta lograr la forma general que desees.
+</details>
 
-#### Método B: La técnica del "Vértice Único" (Para dibujar figuras complejas como Flechas)
+<details>
+<summary><b>▶️ Ver Método B: La técnica del "Vértice Único" (Para dibujar figuras complejas como Flechas)</b></summary>
+<br>
+
 1. Crea un Plano estándar desde *Object Mode*.
 2. Entra a **`Edit Mode`**, selecciona todo (<kbd>A</kbd>), presiona <kbd>M</kbd> y selecciona **`Merge At Center`**. ¡Ahora solo tienes un vértice microscópico en todo el plano!
 3. Pulsa <kbd>G</kbd> para mover la posición inicial de tu vértice.
 4. Presiona <kbd>E</kbd> para extruir (crear un nuevo vértice conectado por un borde). Sigue oprimiendo <kbd>E</kbd> repetidamente como si estuvieras trazando una línea para dibujar paso a paso cruces, flechas curvas, o perfiles personalizados que tengan sentido para ti.
 5. Selecciona el vértice final y el inicial presionando <kbd>Shift</kbd> + Clic izquierdo y presiona <kbd>F</kbd> para cerrar la figura. ¡Listo! Has dibujado a mano alzada tu controlador.
+</details>
 
 ---
 
 ### 5.2. El Secreto del "Centro de Origen" (Origin Point)
 Uno de los errores más comunes al hacer Rigging es que el controlador aparezca muy lejos del hueso real, y muchas veces esto se debe al *Punto de Origen* (el puntito naranja).
 
-> [!WARNING]
-> Cuando asignas un "Custom Bone", Blender alinea el origen del Hueso con el origen (Origin Point) del Widget.
+> [!CAUTION]
+> **Fallo Crítico Evitado:** Cuando asignas un "Custom Bone", Blender alinea en base al origen del Hueso con el origen (Origin Point) del Widget. Si el origen de tu Widget está mal puesto, rotará sobre un eje invisible.
 
 **Pasos para alinear el Origen a la Perfección:**
 1. Selecciona tu Widget en *Object Mode*.
@@ -236,6 +265,8 @@ Para darle consistencia visual a tu Rig, intenta crear y guardar en tu archivo p
 | **Codos y Rodillas (Pole Targets)** | Diminutas esferas dibujadas a mano, o cruces (X) que floten exactamente en el espacio detrás de los codos. Al ser un objetivo que la rodilla persigue, una "mirilla" o "diana" dibujada sirve perfectamente. |
 | **Huesos del Torso/Columna** | Aros simples, escalados a lo ancho o ajustados a la silueta de los hombros, como una rebanada de cebolla visual. |
 | **Huesos Faciales (Si tu rig escala hasta allí)** | Pequeñas pirámides huecas o esferitas planas. |
+
+<div align="right"><a href="#-tutorial-completo-de-rigging-2d-en-blender-de-cero-a-héroe">⬆️ Volver al inicio</a></div>
 
 ---
 
