@@ -12,9 +12,13 @@
 - [3. Parentesco y Weight Painting](#3-parentesco-y-weight-painting)
 - [4. Cinemática Inversa (IK)](#4-cinemática-inversa-ik---magia-para-animar)
 - [5. Formas Personalizadas (Custom Bones)](#5-formas-personalizadas-custom-bones---estilizando-tu-rig)
-- [6. Animación Final](#6-animación-final)
-- [7. Videos de Referencia](#7-videos-de-referencia-más-recursos)
-- [8. Subir a GitHub](#8-subir-a-github)
+- [6. Restricciones Avanzadas (Constraints Extra)](#6-restricciones-avanzadas-constraints-extra)
+- [7. Expresiones Faciales (Shape Keys y Drivers)](#7-expresiones-faciales-shape-keys-y-drivers)
+- [8. Librería de Poses (Asset Browser)](#8-librería-de-poses-asset-browser)
+- [9. Interpolación y Action Editor](#9-interpolación-y-action-editor)
+- [10. Animación Final](#10-animación-final)
+- [11. Videos de Referencia](#11-videos-de-referencia-más-recursos)
+- [12. Subir a GitHub](#12-subir-a-github)
 
 </details>
 
@@ -270,7 +274,79 @@ Para darle consistencia visual a tu Rig, intenta crear y guardar en tu archivo p
 
 ---
 
-## 6. Animación Final
+## 6. Restricciones Avanzadas (Constraints Extra)
+
+La Cinemática Inversa (IK) es solo el principio. Para que un Rig 2D sea verdaderamente indestructible y el animador no lo "rompa" por error, debes añadir estas restricciones (Constraints) a tus huesos.
+
+### Limit Rotation 🛑
+Evita que el codo o la rodilla se doble de forma antinatural (impidiendo que la extremidad parezca fracturada).
+* **Cómo usar:** En Modo Pose, selecciona el hueso de la pantorrilla, ve a `Bone Constraints` > `Limit Rotation`. Activa los límites en el eje local (usualmente el eje Z o X en 2D) impidiendo que se doble más allá de 0° hacia atrás y 140° hacia adelante.
+
+### Copy Rotation 🔄
+Obliga a un hueso a imitar la rotación de otro. Perfecto para mechas de pelo, faldas o mangas que deben reaccionar cuando el personaje gira el torso.
+* **Cómo usar:** `Bone Constraints` > `Copy Rotation`. Eliges el `Target` (el cuerpo) y asignas un % de influencia (ej. 0.5 para que la falda gire la mitad de lo que gira la cadera).
+
+### Stretch To (Efecto Chicle) 🍬
+La regla principal de la animación tradicional es "Squash & Stretch" (Encoger y Estirar). Con esto, si un controlador IK se aleja más de la longitud del brazo, el brazo se estirará como goma en lugar de desconectarse.
+* **Cómo usar:** Selecciona los huesos de tu brazo IK > `Bone constraints` > `Stretch To` > Elige el controlador de la mano.
+
+<div align="right"><a href="#-tutorial-completo-de-rigging-2d-en-blender-de-cero-a-héroe">⬆️ Volver al inicio</a></div>
+
+---
+
+## 7. Expresiones Faciales (Shape Keys y Drivers)
+
+Para animar caras (como cerrar ojos o cambiar de vocal en la boca) en animación 2D Cutout o geometría plana, usar huesos tradicionales deforma muy feo la malla. En su lugar, usamos "Shape Keys".
+
+### Paso 7.1: Crear Shape Keys
+1. Selecciona el objeto de tu cara en **`Object Mode`**.
+2. Ve al panel de `Object Data Properties` (Triángulo verde) > sección **`Shape Keys`**.
+3. Da clic al `+` dos veces. El primero creará la clave "Basis" (la cara base neutra) y el segundo la "Key 1" (nómbrala "Ojo_Cerrado").
+4. Selecciona "Ojo_Cerrado", entra a **`Edit Mode`** y mueve los vértices del ojo hasta cerrarlo. Al volver a Object Mode, usa el deslizador de *Value* (de 0.0 a 1.0) para ver cómo parpadea mágicamente.
+
+### Paso 7.2: Controlarlas con Drivers (Magia negra)
+Mover un deslizador sin estar en el Rig es molesto. ¡Conectémoslo a un Hueso Custom!
+1. En tu ventana, abre un menú de **`Drivers`**.
+2. Haz clic derecho en el cuadro *Value* de tu Shape Key y selecciona **`Add Driver`**.
+3. En la ventana emergente, configura el Driver asociando la rotación (o posición Local Y) de tu Hueso controlador de la cara al valor de la Shape Key. 
+4. ¡Baila! Ahora, cada vez que bajes el huesito diminuto en el rostro, el ojo se cerrará.
+
+<div align="right"><a href="#-tutorial-completo-de-rigging-2d-en-blender-de-cero-a-héroe">⬆️ Volver al inicio</a></div>
+
+---
+
+## 8. Librería de Poses (Asset Browser)
+
+Repetir las mismas poses de las manos (puño, señalar, mano abierta) miles de veces es agotador. Blender tiene un **Pose Library** para guardar posturas y aplicarlas al instante.
+
+1. Abre un panel como **`Asset Browser`**.
+2. Con tu personaje en **`Pose Mode`**, posiciona las manos (los huesos necesarios) para formar un Puño. Selecciona solo esos huesos.
+3. Arriba en tu área 3D (Asset Browser) haz clic en **`Create Pose Asset`**.
+4. ¡Se creará una miniatura! Nómbrala "Mano_Puño".
+5. La próxima vez, solo debes arrastrar esa miniatura sobre tu personaje y la mano cambiará al instante a esa pose. Puedes crear una inmensa librería de bocas y manos (A, E, I, O, U, Cerrada, Furioso).
+
+<div align="right"><a href="#-tutorial-completo-de-rigging-2d-en-blender-de-cero-a-héroe">⬆️ Volver al inicio</a></div>
+
+---
+
+## 9. Interpolación y Action Editor
+
+Una vez que sabes mover huesos y expresiones, la forma en que Blender calcula los trayectos entre Keyframes (Fotogramas Clave) determina el "arte" final de la animación.
+
+### Tipos de Interpolación (Presiona <kbd>T</kbd> en el Timeline):
+* **Bezier (Por defecto):** Suaviza la aceleración y la salida (Ease In/Out). Se ve moderno pero a costa de parecer "demasiado fluido o artificial" para 2D.
+* **Linear:** Velocidad absolutamente robótica y continua.
+* **Constant:** **¡El favorito del 2D!** Congela la animación en ese fotograma hasta la siguiente pose. Usando *Constant* puedes simular animación tradicional "En dos" (Drop 12 frames per second estilo Spider-Verse).
+
+### Action Editor: 
+No animes el salto y la carrera en la misma línea de tiempo gigante.
+Ve al **`Dope Sheet`**, cámbialo al modo **`Action Editor`**. Aquí podrás crear "Bloques" de animación. Por ejemplo, pulsas `New` y nombras la acción "Correr_Loop". La finalizas, presionas la escudita de `Fake User` (para guardarla) y creas una nueva llamada "Saltar". Así ordenas tu proyecto a nivel Pro.
+
+<div align="right"><a href="#-tutorial-completo-de-rigging-2d-en-blender-de-cero-a-héroe">⬆️ Volver al inicio</a></div>
+
+---
+
+## 10. Animación Final
 
 <div align="center">
   <h3>¡Mira el resultado en acción! 🎥</h3>
@@ -279,7 +355,7 @@ Para darle consistencia visual a tu Rig, intenta crear y guardar en tu archivo p
 
 ---
 
-## 7. Videos de Referencia (¡Más Recursos!)
+## 11. Videos de Referencia (¡Más Recursos!)
 
 Para una comprensión más visual y profunda, estos tutoriales son oro puro:
 
@@ -305,7 +381,7 @@ Para una comprensión más visual y profunda, estos tutoriales son oro puro:
 
 ---
 
-## 8. Subir a GitHub
+## 12. Subir a GitHub
 
 Mantén tu repositorio actualizado con tu increíble trabajo.
 
