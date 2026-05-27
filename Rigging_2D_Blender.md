@@ -11,8 +11,9 @@
 - [2. Paso a Paso: Creación del Rig](#2-paso-a-paso-creación-del-rig)
 - [3. Parentesco y Weight Painting](#3-parentesco-y-weight-painting)
 - [4. Cinemática Inversa (IK)](#4-cinemática-inversa-ik---magia-para-animar)
-- [5. Videos de Referencia](#5-videos-de-referencia-más-recursos)
-- [6. Subir a GitHub](#6-subir-a-github)
+- [5. Animación Final](#5-animación-final)
+- [6. Videos de Referencia](#6-videos-de-referencia-más-recursos)
+- [7. Subir a GitHub](#7-subir-a-github)
 
 </details>
 
@@ -22,11 +23,9 @@
 
 En este tutorial, no solo aprenderás a construir un esqueleto, sino también a implementar técnicas avanzadas como la **Cinemática Inversa (IK)** para lograr movimientos fluidos y naturales.
 
-### 🎥 Animación Final
-
-![Animación Final en Blender](./animacion_small.gif)
-
-![Referencia de Rigging](1.png)
+<div align="center">
+  <img src="./1.png" alt="Referencia de Rigging">
+</div>
 
 ---
 
@@ -151,7 +150,16 @@ La Cinemática Inversa (IK) te permite mover una cadena de huesos (como un brazo
 
 ---
 
-## 5. Videos de Referencia (¡Más Recursos!)
+## 5. Animación Final
+
+<div align="center">
+  <h3>¡Mira el resultado en acción! 🎥</h3>
+  <img src="./animacion_small.gif" alt="Demostración de Animación Final en Blender">
+</div>
+
+---
+
+## 6. Videos de Referencia (¡Más Recursos!)
 
 Para una comprensión más visual y profunda, estos tutoriales son oro puro:
 
@@ -177,7 +185,7 @@ Para una comprensión más visual y profunda, estos tutoriales son oro puro:
 
 ---
 
-## 6. Subir a GitHub
+## 7. Subir a GitHub
 
 Mantén tu repositorio actualizado con tu increíble trabajo.
 
